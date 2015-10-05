@@ -23,7 +23,8 @@ function prepareToDraw(socket) {
     }
 
     var isPainting=false;
-    function draw(x, y, type) {
+    function draw(x, y, type, color) {
+        context.strokeStyle = color;
         if (type === "mousedown") {
             isPainting = true;
             context.beginPath();
@@ -42,16 +43,17 @@ function prepareToDraw(socket) {
         var type = e.handleObj.type;
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
-        draw(x, y, type);
+        draw(x, y, type, personalColor);
         socket.emit('ijustdrewsomething', {
             x: x,
             y: y,
-            type: type
+            type: type,
+            color : personalColor
         });
     });
 
     socket.on('remoteuserdrewsomething', function (data) {
-        return draw(data.x, data.y, data.type);
+        return draw(data.x, data.y, data.type, data.color);
     });
 
 
