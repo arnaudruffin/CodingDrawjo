@@ -57,15 +57,15 @@ function prepareToDraw(socket) {
     });
 
 
-    /*
+
      function clearDraw(){
-     console.log("clearing (0,0) -> ("+canvasDom.width+","+canvasDom.height+")");
-     context.clearRect(0, 0, canvasDom.width, canvasDom.height);
+        context.clearRect(0, 0, canvasDom.width, canvasDom.height);
      }
      $("#clearBtn").on("click", function(e){
-     e.preventDefault();
-     clearDraw();
-     socket.emit('clear_all');
+        e.preventDefault();
+        clearDraw();
+        socket.emit('clear_all');
      });
-     */
+    socket.on("clear_all",  clearDraw);
+
 }
