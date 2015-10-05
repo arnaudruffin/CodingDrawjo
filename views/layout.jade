@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        block extra_styles
+
+        script(src='/javascripts/jquery.min.js')
+        block extra_scripts
+
+
+    body
+        block content

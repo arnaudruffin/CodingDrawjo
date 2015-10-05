@@ -1,0 +1,13 @@
+extends layout
+block extra_scripts
+    script(src='/javascripts/interactive-draw.js')
+    script.
+        window.onload = function () {
+            prepareToDraw();
+        }
+block content
+    h1= title
+    p Welcome to #{title}
+        //button#clearBtn Clear all
+        canvas#personalColour(width="10" height="10")
+    canvas#drawCanvas(width="500" height="500" style="border:1px solid #000000;")
