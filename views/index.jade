@@ -1,3 +1,17 @@
 extends layout
+block extra_scripts
+    script(src='/socket.io/socket.io.js')
+    script.
+        window.onload = function() {
+            var socket = io();
+            socket.on("connect", function(){
+                console.log("connected");
+            });
+            socket.on("welcome", function(data){
+               console.log("server sends "+JSON.stringify(data));
+                socket.emit('user_says_something', "What a good day!");
+            });
+        }
+
 block content
     p Hello World
