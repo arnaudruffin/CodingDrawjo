@@ -5,10 +5,9 @@ var io = require('socket.io')(http);
 
 io.on('connection', function(socket){
     console.log('a user connected');
-    socket.on('user_says_something', function(msg){
-        console.log("user says:"+msg);
+    socket.on('ijustdrewsomething', function(data) {
+        socket.broadcast.emit('remoteuserdrewsomething', data);
     });
-    socket.emit("welcome", {socketId : socket.id, data : "some data"});
 });
 
 

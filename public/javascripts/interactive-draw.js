@@ -1,5 +1,5 @@
 "use strict";
-function prepareToDraw() {
+function prepareToDraw(socket) {
     var context,
         canvasDom;
 
@@ -43,8 +43,16 @@ function prepareToDraw() {
         var x = e.pageX - this.offsetLeft;
         var y = e.pageY - this.offsetTop;
         draw(x, y, type);
+        socket.emit('ijustdrewsomething', {
+            x: x,
+            y: y,
+            type: type
+        });
     });
 
+    socket.on('remoteuserdrewsomething', function (data) {
+        return draw(data.x, data.y, data.type);
+    });
 
 
     /*

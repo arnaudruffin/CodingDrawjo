@@ -1,9 +1,15 @@
 extends layout
 block extra_scripts
+    script(src='/socket.io/socket.io.js')
     script(src='/javascripts/interactive-draw.js')
     script.
         window.onload = function () {
-            prepareToDraw();
+            var socket = io();
+            socket.on("connect", function(){
+                console.log("connected");
+                prepareToDraw(socket);
+            });
+
         }
 block content
     h1= title
